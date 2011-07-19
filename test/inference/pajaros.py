@@ -44,22 +44,17 @@ inputfile.close()
 print 'Data matrix read'
 
 # First filter
-def remove_first_bird_without_enough_observations(matrix, min_num_obs):
+def remove_birds_without_enough_observations(matrix, min_num_obs):
   for bird_index in range(len(matrix)):
     num_obs = 0
     for obs in matrix[bird_index]:
       if obs != None:
         num_obs += 1
-
     if num_obs < min_num_obs:
       del matrix[bird_index]
-      return True
-
-  return False
 
 min_num_obs = 10
-while remove_first_bird_without_enough_observations(data_matrix, min_num_obs):
-  pass
+remove_birds_without_enough_observations(data_matrix, min_num_obs)
 
 print 'All birds with at least', min_num_obs, 'will be analized'
 
